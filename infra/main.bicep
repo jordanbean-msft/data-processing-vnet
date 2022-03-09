@@ -34,6 +34,7 @@ module vNetDeployment 'vnet.bicep' = {
     publicSubnetNsgName: names.outputs.publicSubnetNsgName
     blobStorageAccountContainerPrivateLinkDnsName: dnsDeployment.outputs.blobStorageAccountContainerPrivateLinkDnsName
     dataFactoryPrivateLinkDnsName: dnsDeployment.outputs.dataFactoryPrivateLinkDnsName
+    dfsStorageAccountContainerPrivateLinkDnsName: dnsDeployment.outputs.dfsStorageAccountContainerPrivateLinkDnsName
   }
 }
 

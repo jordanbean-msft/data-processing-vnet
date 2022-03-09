@@ -8,6 +8,7 @@ param publicSubnetNsgName string
 param privateSubnetNsgName string
 param endpointsSubnetNsgName string
 param blobStorageAccountContainerPrivateLinkDnsName string
+param dfsStorageAccountContainerPrivateLinkDnsName string
 
 resource publicSubnetNsg 'Microsoft.Network/networkSecurityGroups@2021-05-01' = {
   name: publicSubnetNsgName
@@ -339,6 +340,17 @@ resource dataFactoryPrivateLinkDnsVirtualNetworkLink 'Microsoft.Network/privateD
 
 resource blobStorageAccountContainerPrivateLinkDnsVirtualNetworkLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
   name: '${blobStorageAccountContainerPrivateLinkDnsName}/${uniqueString(vNet.id)}'
+  location: 'global'
+  properties: {
+    virtualNetwork: {
+      id: vNet.id
+    }
+    registrationEnabled: false
+  }
+}
+
+resource dfsStorageAccountContainerPrivateLinkDnsVirtualNetworkLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
+  name: '${dfsStorageAccountContainerPrivateLinkDnsName}/${uniqueString(vNet.id)}'
   location: 'global'
   properties: {
     virtualNetwork: {
